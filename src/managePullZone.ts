@@ -28,6 +28,7 @@ interface IPullZone {
   ZoneSecurityEnabled: boolean;
   ZoneSecurityKey: string;
   EnableCacheSlice: boolean; // Determines if cache slicing (Optimize for video) should be enabled for this zone
+  IgnoreQueryStrings: boolean; // Determines if the Pull Zone should ignore query strings when serving cached objects (Vary by Query String)
 }
 
 const getPullZones = async (): Promise<Array<IPullZone>> => {
@@ -120,6 +121,7 @@ const getOrCreatePullZoneConfig = async (
     ErrorPageWhitelabel: spec.errorPageWhiteLabel,
     MonthlyBandwidthLimit: spec.monthlyBandwidthLimit,
     ZoneSecurityEnabled: spec.zoneSecurityEnabled,
+    IgnoreQueryStrings: false,
   };
   return { createConfig, updateConfig };
 };
