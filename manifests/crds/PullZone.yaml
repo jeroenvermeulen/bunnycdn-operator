@@ -54,6 +54,27 @@ spec:
                   type: string
                   pattern: "^(delete|retain)"
                   default: "retain"
+                enableQueryStringSort:
+                  type: boolean
+                  default: true
+                enableQueryStringVary:
+                  type: boolean
+                  default: false
+                enableWebpVary:
+                  type: boolean
+                  default: false
+                enableAvifVary:
+                  type: boolean
+                  default: false
+                enableMobileVary:
+                  type: boolean
+                  default: false
+                enableCountryCodeVary:
+                  type: boolean
+                  default: false
+                enableHostnameVary:
+                  type: boolean
+                  default: false
             status:
               type: object
               properties:
@@ -72,7 +93,7 @@ spec:
       additionalPrinterColumns:
         - name: Ready
           type: boolean
-          jsonPath: .status.ready          
+          jsonPath: .status.ready
         - name: Message
           type: string
           jsonPath: .status.message

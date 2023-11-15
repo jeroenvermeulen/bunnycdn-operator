@@ -65,7 +65,14 @@ export interface PullZoneSpec {
   errorPageWhiteLabel: boolean; // defaults to true
   enabledCacheSlice: boolean; // defaults to true
   monthlyBandwidthLimit: number; // defaults to 0 a.k.a unlimited
-  deletionPolicy: "delete" | "retain";
+  deletionPolicy: "delete" | "retain"; // defaults to retain
+  enableQueryStringSort: boolean; // defaults to true
+  enableQueryStringVary: boolean; // defaults to false
+  enableWebpVary: boolean; // defaults to false
+  enableAvifVary: boolean; // defaults to false
+  enableMobileVary: boolean; // defaults to false
+  enableCountryCodeVary: boolean; // defaults to false
+  enableHostnameVary: boolean; // defaults to false
 }
 
 export interface PullZoneStatus {

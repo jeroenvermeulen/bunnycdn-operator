@@ -22,13 +22,19 @@ interface IPullZone {
   OriginUrl: string;
   StorageZoneId: number;
   Hostnames: Array<IHostname>;
-  MonthlyBandwidthLimit: number;
+  MonthlyBandwidthLimit: number; // Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use
   Type: 0 | 1; // The type of the pull zone. Premium = 0, Volume = 1
-  ErrorPageWhitelabel: boolean;
-  ZoneSecurityEnabled: boolean;
+  ErrorPageWhitelabel: boolean; // Determines if the error pages should be whitelabel or not
+  ZoneSecurityEnabled: boolean; // Determines if the zone token authentication security should be enabled
   ZoneSecurityKey: string;
   EnableCacheSlice: boolean; // Determines if cache slicing (Optimize for video) should be enabled for this zone
+  EnableQueryStringOrdering: boolean; // Determines if the query string ordering should be enabled.
   IgnoreQueryStrings: boolean; // Determines if the Pull Zone should ignore query strings when serving cached objects (Vary by Query String)
+  EnableWebpVary: boolean; // Determines if the WebP Vary feature should be enabled.
+  EnableAvifVary: boolean; // Determines if the AVIF Vary feature should be enabled.
+  EnableMobileVary: boolean; // Determines if the Mobile Vary feature is enabled.
+  EnableCountryCodeVary: boolean; // Determines if the Country Code Vary feature should be enabled.
+  EnableHostnameVary: boolean; // Determines if the Hostname Vary feature should be enabled.
 }
 
 const getPullZones = async (): Promise<Array<IPullZone>> => {
@@ -121,7 +127,13 @@ const getOrCreatePullZoneConfig = async (
     ErrorPageWhitelabel: spec.errorPageWhiteLabel,
     MonthlyBandwidthLimit: spec.monthlyBandwidthLimit,
     ZoneSecurityEnabled: spec.zoneSecurityEnabled,
-    IgnoreQueryStrings: false,
+    EnableQueryStringOrdering: spec.enableQueryStringSort,
+    IgnoreQueryStrings: !spec.enableQueryStringVary,
+    EnableWebpVary: spec.enableWebpVary,
+    EnableAvifVary: spec.enableAvifVary,
+    EnableMobileVary: spec.enableMobileVary,
+    EnableCountryCodeVary: spec.enableCountryCodeVary,
+    EnableHostnameVary: spec.enableHostnameVary,
   };
   return { createConfig, updateConfig };
 };
