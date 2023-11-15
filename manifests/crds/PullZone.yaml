@@ -81,6 +81,9 @@ spec:
                 cookieVaryNames:
                   type: string
                   default: ""
+                  x-kubernetes-validations:
+                    - rule: "self == '' || self.find('^([A-Za-z0-9]+)(,[A-Za-z0-9]+)*$') != ''"
+                      message: "cookieVaryNames must be letters and numbers only, separated by a comma."
             status:
               type: object
               properties:

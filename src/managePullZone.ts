@@ -138,7 +138,7 @@ const getOrCreatePullZoneConfig = async (
     EnableMobileVary: spec.enableMobileVary,
     EnableCountryCodeVary: spec.enableCountryCodeVary,
     EnableHostnameVary: spec.enableHostnameVary,
-    EnableCookieVary: spec.cookieVaryNames as unknown as boolean,
+    EnableCookieVary: true,
     CookieVaryParameters: spec.cookieVaryNames,
   };
   return { createConfig, updateConfig };

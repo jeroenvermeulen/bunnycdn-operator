@@ -8,6 +8,8 @@ import { logger } from "./logger";
 
 const BUNNY_CDN_API_KEY = process.env.BUNNY_CDN_API_KEY;
 
+logger.debug("Starting bunny-cdn-operator");
+
 if (!BUNNY_CDN_API_KEY || BUNNY_CDN_API_KEY == "") {
   logger.error("Missing `BUNNY_CDN_API_KEY` environment variable");
   process.exit(9);
