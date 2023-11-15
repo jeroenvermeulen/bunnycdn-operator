@@ -30,11 +30,14 @@ interface IPullZone {
   EnableCacheSlice: boolean; // Determines if cache slicing (Optimize for video) should be enabled for this zone
   EnableQueryStringOrdering: boolean; // Determines if the query string ordering should be enabled.
   IgnoreQueryStrings: boolean; // Determines if the Pull Zone should ignore query strings when serving cached objects (Vary by Query String)
+  QueryStringVaryParameters: string; // Contains the list of vary parameters that will be used for vary cache by query string. If empty, all parameters will be used to construct the key
   EnableWebpVary: boolean; // Determines if the WebP Vary feature should be enabled.
   EnableAvifVary: boolean; // Determines if the AVIF Vary feature should be enabled.
   EnableMobileVary: boolean; // Determines if the Mobile Vary feature is enabled.
   EnableCountryCodeVary: boolean; // Determines if the Country Code Vary feature should be enabled.
   EnableHostnameVary: boolean; // Determines if the Hostname Vary feature should be enabled.
+  EnableCookieVary: boolean; // Determines if the Cookie Vary feature is enabled.
+  CookieVaryParameters: string; // Contains the list of vary parameters that will be used for vary cache by cookie string. If empty, cookie vary will not be used.
 }
 
 const getPullZones = async (): Promise<Array<IPullZone>> => {
@@ -129,11 +132,14 @@ const getOrCreatePullZoneConfig = async (
     ZoneSecurityEnabled: spec.zoneSecurityEnabled,
     EnableQueryStringOrdering: spec.enableQueryStringSort,
     IgnoreQueryStrings: !spec.enableQueryStringVary,
+    QueryStringVaryParameters: spec.queryStringVaryParameters,
     EnableWebpVary: spec.enableWebpVary,
     EnableAvifVary: spec.enableAvifVary,
     EnableMobileVary: spec.enableMobileVary,
     EnableCountryCodeVary: spec.enableCountryCodeVary,
     EnableHostnameVary: spec.enableHostnameVary,
+    EnableCookieVary: spec.cookieVaryNames as unknown as boolean,
+    CookieVaryParameters: spec.cookieVaryNames,
   };
   return { createConfig, updateConfig };
 };

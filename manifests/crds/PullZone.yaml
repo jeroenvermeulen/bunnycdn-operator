@@ -60,6 +60,9 @@ spec:
                 enableQueryStringVary:
                   type: boolean
                   default: false
+                queryStringVaryParameters:
+                  type: string
+                  default: ""
                 enableWebpVary:
                   type: boolean
                   default: false
@@ -75,6 +78,9 @@ spec:
                 enableHostnameVary:
                   type: boolean
                   default: false
+                cookieVaryNames:
+                  type: string
+                  default: ""
             status:
               type: object
               properties:
